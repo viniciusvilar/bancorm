@@ -19,7 +19,7 @@ public class ContaService {
         listaContas.add(conta);
     }
 
-    public void depositarConta(long id, float valor) {
+    public void depositarConta(int id, float valor) {
         for (Conta contas : listaContas) {
             if (contas.getIdConta() == id) {
                 contas.setSaldoConta(contas.getSaldoConta() + valor);
@@ -27,7 +27,7 @@ public class ContaService {
         }
     }
 
-    public void saqueConta(long id, float valor) {
+    public void saqueConta(int id, float valor) {
         for (Conta contas : listaContas) {
             if (contas.getIdConta() == id) {
                 contas.setSaldoConta(contas.getSaldoConta() - valor);
@@ -35,7 +35,7 @@ public class ContaService {
         }
     }
 
-    public float saldoConta(long id) {
+    public float saldoConta(int id) {
         float valSaldo = 0;
         for (Conta contas : listaContas) {
             if (contas.getIdConta() == id) {
@@ -45,8 +45,7 @@ public class ContaService {
         return valSaldo;
     }
 
-    public void deletarConta() {
-        long idConta = 0;
+    public void deletarConta(int idConta) {
         for (Conta contas : listaContas) {
             if (contas.getIdConta() == idConta) {
                 listaContas.remove(contas);

@@ -38,27 +38,27 @@ public class ContaController {
 
     //Depositar
     @PutMapping(path = "/{id}/deposito")
-    public void depositarConta(@PathVariable long idConta, @RequestBody String valDeposito) {
+    public void depositarConta(@PathVariable int idConta, @RequestBody String valDeposito) {
         System.out.println(valDeposito);
         //servico.depositarConta(id, valDeposito);
     }
 
     //Sacar
     @PutMapping(path = "/{id}/saque")
-    public void saqueConta(@PathVariable long idConta, @RequestBody float valSaque) {
+    public void saqueConta(@PathVariable int idConta, @RequestBody float valSaque) {
         servico.saqueConta(idConta, valSaque);
     }
 
     //Saldo
     @GetMapping(path = "/{id}/saldo")
-    public float saldoCOnta(@PathVariable long idConta) {
-        float saldoConta = servico.saldoConta(idConta);
+    public float saldoCOnta(@PathVariable int id) {
+        float saldoConta = servico.saldoConta(id);
         return saldoConta;
     }
 
     //deletar
     @DeleteMapping(path = "/{id}")
-    public void deletarConta(@PathVariable long idConta) {
-        servico.deletarConta();
+    public void deletarConta(@PathVariable int idConta) {
+        servico.deletarConta(idConta);
     }
 }
