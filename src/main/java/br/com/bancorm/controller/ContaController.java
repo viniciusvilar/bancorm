@@ -58,7 +58,7 @@ public class ContaController {
 
     //deletar
     @DeleteMapping(path = "/{id}")
-    public void deletarConta(@PathVariable int idConta) {
-        servico.deletarConta(idConta);
+    public void apagarConta(@PathVariable int id) {
+        servico.deletarConta(id);
     }
 }

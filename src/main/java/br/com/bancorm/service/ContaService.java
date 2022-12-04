@@ -45,9 +45,9 @@ public class ContaService {
         return valSaldo;
     }
 
-    public void deletarConta(int idConta) {
+    public void deletarConta(int id) {
         for (Conta contas : listaContas) {
-            if (contas.getIdConta() == idConta) {
+            if (contas.getIdConta() == id) {
                 listaContas.remove(contas);
             }
         }
