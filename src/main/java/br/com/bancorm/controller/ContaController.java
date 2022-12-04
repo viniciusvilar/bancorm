@@ -3,6 +3,7 @@ package br.com.bancorm.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,43 +25,40 @@ public class ContaController {
         return servico.listaContas();
     }
 
+    @GetMapping(path = "/mostrarcontas")
+    public void mostrarContas() {
+        servico.contasCadastradas();
+    }
+
     // Cadastrar Conta
     @PostMapping(path = {"", "/"})
-    public void cadastrarConta(@RequestBody int idConta, @RequestBody String descricaoConta, @RequestBody float saldoConta) {
-        Conta conta = new Conta(idConta, descricaoConta, saldoConta);
-        servico.listaContas.add(conta);
+    public void cadastrarConta(@RequestBody Conta conta) {;
+        servico.criarConta(conta);
     }
 
     //Depositar
     @PutMapping(path = "/{id}/deposito")
-    public void depositarConta(@PathVariable int id, @RequestBody float valDeposito) {
-        for (Conta listaContas : servico.listaContas) {
-            if (listaContas.getIdConta() == id) {
-                listaContas.setSaldoConta(valDeposito + listaContas.getSaldoConta());
-            }
-            
-        }
+    public void depositarConta(@PathVariable long idConta, @RequestBody String valDeposito) {
+        System.out.println(valDeposito);
+        //servico.depositarConta(id, valDeposito);
     }
 
     //Sacar
     @PutMapping(path = "/{id}/saque")
-    public void saqueConta(@PathVariable int id, @RequestBody float valSaque) {
-        for (Conta listaContas : servico.listaContas) {
-            if (listaContas.getIdConta() == id) {
-                listaContas.setSaldoConta(listaContas.getSaldoConta() - valSaque);
-            }
-        }
+    public void saqueConta(@PathVariable long idConta, @RequestBody float valSaque) {
+        servico.saqueConta(idConta, valSaque);
     }
 
     //Saldo
     @GetMapping(path = "/{id}/saldo")
-    public float saldoCOnta(@PathVariable int id) {
-        float valSaldo = 0;
-        for (Conta listaContas : servico.listaContas) {
-            if (listaContas.getIdConta() == id) {
-                valSaldo = listaContas.getSaldoConta();
-            }
-        }
-        return valSaldo;
+    public float saldoCOnta(@PathVariable long idConta) {
+        float saldoConta = servico.saldoConta(idConta);
+        return saldoConta;
+    }
+
+    //deletar
+    @DeleteMapping(path = "/{id}")
+    public void deletarConta(@PathVariable long idConta) {
+        servico.deletarConta();
     }
 }

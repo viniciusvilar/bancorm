@@ -1,17 +1,17 @@
 package br.com.bancorm.model;
 
 public class Conta {
-    private int idConta;
+    private long idConta;
     private String descricaoConta;
     private float saldoConta;
 
-    public Conta(int idConta, String descricaoConta, float saldoConta) {
+    public Conta(long idConta, String descricaoConta, float saldoConta) {
         this.idConta = idConta;
         this.descricaoConta = descricaoConta;
         this.saldoConta = saldoConta;
     }
 
-    public int getIdConta() {
+    public long getIdConta() {
         return idConta;
     }
     public void setIdConta(int idConta) {
