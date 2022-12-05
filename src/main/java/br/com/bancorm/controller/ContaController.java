@@ -1,6 +1,7 @@
 package br.com.bancorm.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.bancorm.model.Conta;
@@ -38,15 +40,18 @@ public class ContaController {
 
     //Depositar
     @PutMapping(path = "/{id}/deposito")
-    public void depositarConta(@PathVariable int idConta, @RequestBody String valDeposito) {
-        System.out.println(valDeposito);
-        //servico.depositarConta(id, valDeposito);
+    public void depositarConta(@PathVariable int id, @RequestBody Map<String, String> valor) {
+        String  valorString = valor.get("valor");
+        float valDeposito = Float.valueOf(valorString).floatValue();
+        servico.depositarConta(id, valDeposito);
     }
 
     //Sacar
     @PutMapping(path = "/{id}/saque")
-    public void saqueConta(@PathVariable int idConta, @RequestBody float valSaque) {
-        servico.saqueConta(idConta, valSaque);
+    public void saqueConta(@PathVariable int id, @RequestBody Map<String, String> valor) {
+        String  valorString = valor.get("valor");
+        float valSaque = Float.valueOf(valorString).floatValue();
+        servico.saqueConta(id, valSaque);
     }
 
     //Saldo
