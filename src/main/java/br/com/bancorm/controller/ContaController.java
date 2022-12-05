@@ -23,14 +23,14 @@ public class ContaController {
     @Autowired
     private ContaService servico;
 
-    public List<Conta> mostrarTodasContas() {
-        return servico.listaContas();
-    }
-
+    /*
+    // Mostrar contas cadastradas
+    Apenas para desenvolvimento
     @GetMapping(path = "/mostrarcontas")
     public void mostrarContas() {
         servico.contasCadastradas();
-    }
+    } 
+    */
 
     // Cadastrar Conta
     @PostMapping(path = {"", "/"})
